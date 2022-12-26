@@ -14,6 +14,24 @@
 	]]>
 </select>
 
+
+<!-- 페이징 처리 -->
+<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+	<![CDATA[
+	select
+		bno, title, content, writer, regdate, updatedate
+		from
+			(select /*+INDEX_DESC(tbl_board pk_board) */
+				rownum rn, bno, title, content, writer, regdate, updatedate
+				from
+					tbl_board
+				where rownum <= #{pageNum} * #{amount}
+			)
+		where rn > (#{pageNum}-1) * #{amount}
+	]]>
+</select>
+
+
 <!-- parameterType="org.zerock.domain.BoardVO" 가 생략된 것임 -->
 <insert id="insert">
 	insert into tbl_board (bno, title, content, writer)

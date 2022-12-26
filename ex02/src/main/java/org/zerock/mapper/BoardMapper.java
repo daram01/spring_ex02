@@ -3,9 +3,15 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 public interface BoardMapper { // DAO의 역할을 하는 인터페이스.
+	
+	// 전체 게시글 불러오기
 	public List<BoardVO> getList();
+	
+	// 페이징 처리
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 	// 글 등록하기
 	public void insert(BoardVO board);
@@ -15,7 +21,7 @@ public interface BoardMapper { // DAO의 역할을 하는 인터페이스.
 	// 특정글 하나만 조회하는 것
 	public BoardVO read(Long bon);
 	
-	// 데이터 삭제
+	// 게시글 삭제
 	public int delete(Long bno);
 	
 	// 업데이트 처리. 제목,내용,작성자를 수정할 때 최종 수정시간을 현재 시간으로 수정하는 것

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -50,21 +51,26 @@ public class BoardServiceTests {
 //		log.info(service.get(4L));
 //	}
 	
-	@Test
-	public void testDelete() {
-		log.info("REMOVE RESULT : " + service.remove(2L));
-	}
+//	@Test
+//	public void testDelete() {
+//		log.info("REMOVE RESULT : " + service.remove(2L));
+//	}
+//	
+//	@Test
+//	public void testUpdate() {
+//		BoardVO board = service.get(9L);
+//		
+//		if(board == null) {
+//			return;
+//		}
+//		
+//		board.setTitle("제목을 수정합니다.");
+//		log.info("MODIFY RESULT : " + service.modify(board));
+//	}
 	
 	@Test
-	public void testUpdate() {
-		BoardVO board = service.get(9L);
-		
-		if(board == null) {
-			return;
-		}
-		
-		board.setTitle("제목을 수정합니다.");
-		log.info("MODIFY RESULT : " + service.modify(board));
+	public void testGetList() {
+		service.getList(new Criteria(2, 10)).forEach(board -> log.info(board));
 	}
 	
 	
